@@ -10,11 +10,11 @@ module.exports = {
       },
       tweetId: {
         allowNull: false,
-        type: Sequelize.BIGINT,
+        type: Sequelize.STRING,
         unique: true
       },
       userId: {
-        type: Sequelize.BIGINT
+        type: Sequelize.STRING
       },
       user: {
         type: Sequelize.STRING

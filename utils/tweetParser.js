@@ -22,7 +22,7 @@ async function fetchTweets (fromMomentDate, tweets=[]) {
   }, 15 * 60 * 1000)
 
   let max_id = null;
-  if (tweets.length != 0) max_id = tweets.pop().id
+  if (tweets.length != 0) max_id = tweets.pop().id_str
   
   let since_id = null;
   let lastTweet = await dbTweet.findOne({
@@ -82,8 +82,8 @@ function analyzeData(tweets) {
     tweetData[lastDate].count += 1;
     tweetData[lastDate].cumulativeSentiment += analyzeSentiment(tweets[i].full_text); */
     dbTweets.push({
-      tweetId: tweets[i].id,
-      userId: tweets[i].user.id,
+      tweetId: tweets[i].id_str,
+      userId: tweets[i].user.id_str,
       user: tweets[i].user.screen_name,
       tweet: tweets[i].full_text,
       date: moment(tweets[i].created_at),
@@ -112,5 +112,6 @@ function fillDates(dates, tweetData, newDate) {
 
 function analyzeSentiment(tweet){
   let result = sentiment.analyze(tweet);
-  return result.comparative == 0 ? 0 : Math.abs(result.comparative)/result.comparative;
+  // return result.comparative == 0 ? 0 : Math.abs(result.comparative)/result.comparative;
+  return result.comparative;
 }

@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     tweetId: {
       allowNull: false,
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING,
       unique: true
     },
     userId: {
-      type: DataTypes.BIGINT
+      type: DataTypes.STRING
     },
     user: {
       type: DataTypes.STRING
